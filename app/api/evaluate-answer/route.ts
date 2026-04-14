@@ -47,9 +47,7 @@ export async function POST(req: NextRequest) {
     const msg = await client.messages.create({
       model: MODELS.evaluate,
       max_tokens: 1600,
-      system: [
-        { type: "text", text: systemPromptForEvaluation(), cache_control: { type: "ephemeral" } },
-      ],
+      system: systemPromptForEvaluation(),
       tools: [FEEDBACK_TOOL],
       tool_choice: { type: "tool", name: FEEDBACK_TOOL.name },
       messages: [{ role: "user", content: userText }],

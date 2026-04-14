@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     const msg = await client.messages.create({
       model: MODELS.generate,
       max_tokens: 1200,
-      system: [{ type: "text", text: systemText, cache_control: { type: "ephemeral" } }],
+      system: systemText,
       tools: [QUESTION_TOOL],
       tool_choice: { type: "tool", name: QUESTION_TOOL.name },
       messages: [{ role: "user", content: userText }],
